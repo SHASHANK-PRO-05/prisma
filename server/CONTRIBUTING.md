@@ -2,7 +2,22 @@
 
 This tutorial aims to get you started with testing your API queries against ApiTestServer, a utility provided to do initial API testing. For this, little knowledge of [Scala SBT](https://www.scala-sbt.org/) and [ScalaTest](http://www.scalatest.org/) would be helpful. 
 
-Steps To Follow:-
+**Setting up Prisma**
+1. To set up Prisma Development Environment make sure you have SBT installed on your system.
+1. To get the code for Prisma run the following commands.
+    ```
+       git clone https://github.com/prismagraphql/prisma.git
+       cd prisma/server
+       sbt
+    ```
+    This will fetch all the required packages. 
+1. Next thing is to setup the Prisma Configuration file location. For that, you can set environment variable `PRSISMA_CONFIG_PATH=<Path of Yaml configuration File>`. You can look [here](https://github.com/prismagraphql/prisma/blob/master/server/docker-compose/mysql/prisma.yml) for reference. If you are an Ubuntu user, you can run the following command to setup environment variable
+    ```
+     export PRISMA_CONFIG_PATH="<Path to Prisma Config file>"
+    ```
+
+
+**Writing your First Test :-**
 
 1. API test files are written at location `{Prisma_Directory}/server/servers/api/src/test/scala/com/prisma/api`. Go ahead and create your test file class and follow the naming conventions already used there. For example `JsonVariablesSpec`.
 1. The test class that you have created should extend traits `FlatSpec` and `Matchers` which are part of ScalaTest and `ApiSpecBase` which is trait provided in Prisma.
@@ -37,8 +52,14 @@ Steps To Follow:-
     ```
     
     For a detailed explanation on making a query, please refer Prisma Documentation. 
-1. Running the code is also super easy.
-    * We need to setup environment variable `PRISMA_CONFIG_PATH` equal to a yaml based  configuration file. Example of such file can be found [here](https://github.com/prismagraphql/prisma/blob/master/server/docker-compose/mysql/prisma.yml). If you use Intellij or Eclipse you can see the documentation of those tools on passing environment variables. We would be setting up t
+1. Running the code is also super easy. Just go back to your sbt console that we had setup in this tutorial and running the following command.
+    ```
+        testOnly <com.prisma.api.your.test.file>
+    ```
+    This will only test your test cases. If you want to run all the tests, run the following command.
+    ```
+        test
+    ```
     
 1. Congratulations! You ran your first test case. 
     
